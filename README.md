@@ -11,6 +11,28 @@ fictional enterprise environment.
 > There is no real company data, no real production infrastructure, and
 > no real third-party systems involved anywhere in this repository.
 
+## Live Demo
+
+| Service | URL |
+|---|---|
+| Dashboard (frontend) | https://frontend-production-ee3f.up.railway.app |
+| API (backend) | https://backend-production-6a555.up.railway.app |
+| Metrics (Prometheus) | https://prometheus-production-ac6c.up.railway.app |
+
+Deployed on Railway: real Postgres, a real single-node Kafka broker (KRaft
+mode) running the same health-event-simulator -> alert -> audit pipeline as
+local, and Prometheus scraping the live backend. Log in with any of the
+[demo credentials](#demo-credentials) below.
+
+Grafana is intentionally not deployed here -- Railway's free tier caps out
+at 5 services, and this stack already uses all 5 (Postgres, Kafka, backend,
+frontend, Prometheus). The provisioned Grafana dashboard still exists and
+works locally via `docker compose up`; Prometheus's own built-in graph
+browser at the URL above covers ad hoc metric queries on the live demo.
+Deploy configs specific to this Railway deployment (Prometheus/Grafana
+Dockerfiles using Railway's private-network hostnames instead of
+docker-compose service names) live under `deploy/railway/`.
+
 ## Why This Project Was Built
 
 This repo exists to demonstrate hands-on, end-to-end engineering across
