@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ops-control-plane-config
+  namespace: ops-control-plane
+data:
+  # DB_HOST/DB_PORT/DB_NAME/KAFKA_BOOTSTRAP_SERVERS/SERVER_PORT map directly
+  # to backend/src/main/resources/application.yml. POSTGRES_DB is consumed
+  # by the postgres Deployment itself and must stay equal to DB_NAME.
+  DB_HOST: "postgres"
+  DB_PORT: "5432"
+  DB_NAME: "opscontrolplane"
+  POSTGRES_DB: "opscontrolplane"
+  KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+  SERVER_PORT: "8080"
