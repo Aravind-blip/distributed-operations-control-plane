@@ -1,0 +1,17 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: "ops-control-plane-backend"
+    metrics_path: "/actuator/prometheus"
+    scrape_interval: 15s
+    static_configs:
+      - targets: ["backend.railway.internal:8080"]
+        labels:
+          application: "distributed-ops-control-plane"
+          component: "backend"
+
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
